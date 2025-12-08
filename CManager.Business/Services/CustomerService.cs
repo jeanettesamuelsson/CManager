@@ -20,14 +20,13 @@ namespace CManager.Business.Services
             {
                 FirstName = firstName,
                 LastName = lastName,
-                Email = email, 
+                Email = email,
                 Telephone = telephone,
+                Id = Guid.NewGuid(),
                 Address = address,
             };
 
-            //Call method GUID to generate a Id
-
-
+            
             //Add customer to list
 
             _customers.Add(customer);
@@ -60,18 +59,16 @@ namespace CManager.Business.Services
         {
             try
             {
-                // FORTSÄTT HÄR!!!!
-                //
-                //
-                //
-                //
-                //
-                // call method GetCustomerById, returns the customer 
-                //Customer toRemove = GetCustomerById(Id);
-                
-                //_customers.Remove(toRemove);
+                //call method GetCustomerById, returns the customer 
+                Customer? toRemove = GetCustomerById(Id);
 
-                return true;
+                // Only attempt to remove if toRemove is not null
+                if (toRemove is not null)
+                {
+                    bool wasRemoved = _customers.Remove(toRemove);
+                    return wasRemoved;
+                }
+                return false;
             }
             catch (KeyNotFoundException ex)
             {
