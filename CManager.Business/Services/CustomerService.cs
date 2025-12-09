@@ -12,7 +12,7 @@ namespace CManager.Business.Services
 
         readonly List<Customer> _customers = [];
 
-        public bool CreateCustomer(string firstName, string lastName, string email, string telephone, string address) 
+        public void CreateCustomer(string firstName, string lastName, string email, string telephone, string streetAddres, string postalCode, string city)
         {
 
             //create customer and add to list
@@ -26,13 +26,14 @@ namespace CManager.Business.Services
                 Id = Guid.NewGuid(),
                 Addres = new AddresModel
                 {
-                    StreetAdress = streetAddres,
+                    StreetAddres = streetAddres,
                     PostalCode = postalCode,
                     City = city
                 }
             };
 
             _customers.Add(customer);
+
         }
 
         //Method to get all customers from list
@@ -46,9 +47,11 @@ namespace CManager.Business.Services
         public Customer? GetCustomerById(Guid Id)
         {
             //search for specific id and return customer
+
             Customer? customer = _customers.FirstOrDefault(c => c.Id == Id);
 
             //return exception if customer do not exist
+
             if (customer is null)
             {
                 throw new KeyNotFoundException($"The customer with Id {Id} does not exist.");
@@ -56,29 +59,17 @@ namespace CManager.Business.Services
             else return customer;
         }
 
-        //Remove specific customer from list
+        //Remove specific customer from list by ID
 
-        public bool RemoveCustomer(Guid Id)
+        public void RemoveCustomer(Guid Id)
         {
-            try
-            {
-                //call method GetCustomerById, returns the customer 
-                Customer? toRemove = GetCustomerById(Id);
+            //create new variable of customer to remove,
+            //use GetCustomerByID to throw exception if user do not exist
 
-                // Only attempt to remove if toRemove is not null
-                if (toRemove is not null)
-                {
-                    bool wasRemoved = _customers.Remove(toRemove);
-                    return wasRemoved;
-                }
-                return false;
-            }
-            catch (KeyNotFoundException ex)
-            {
-                Console.WriteLine(ex.Message);
-                return false;
-            }
+            Customer toRemove = GetCustomerById(Id);
+            _customers.Remove(toRemove);
+
+
         }
-
     }
 }
