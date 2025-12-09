@@ -12,10 +12,11 @@ namespace CManager.Business.Services
 
         readonly List<Customer> _customers = [];
 
-        //Method to create a new customer and a unique ID using GUID helper class
-
-        public void CreateCustomer(string firstName, string lastName, string email, string telephone, string address) 
+        public bool CreateCustomer(string firstName, string lastName, string email, string telephone, string address) 
         {
+
+            //create customer and add to list
+
             Customer customer = new Customer
             {
                 FirstName = firstName,
@@ -23,11 +24,13 @@ namespace CManager.Business.Services
                 Email = email,
                 Telephone = telephone,
                 Id = Guid.NewGuid(),
-                Address = address,
+                Addres = new AddresModel
+                {
+                    StreetAdress = streetAddres,
+                    PostalCode = postalCode,
+                    City = city
+                }
             };
-
-            
-            //Add customer to list
 
             _customers.Add(customer);
         }
