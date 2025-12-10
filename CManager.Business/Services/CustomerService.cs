@@ -44,11 +44,11 @@ namespace CManager.Business.Services
         }
 
         //Get customer by ID
-        public Customer? GetCustomerById(Guid Id)
+        public Customer GetCustomerById(Guid Id)
         {
             //search for specific id and return customer
 
-            Customer? customer = _customers.FirstOrDefault(c => c.Id == Id);
+            Customer customer = _customers.FirstOrDefault(c => c.Id == Id);
 
             //return exception if customer do not exist
 

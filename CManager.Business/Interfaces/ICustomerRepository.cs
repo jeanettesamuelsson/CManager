@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CManager.Domain;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -9,10 +10,10 @@ namespace CManager.Business.Interfaces
 
     {
         //method to get all customers
-        List<CustomerModel> GetAllCustomers();
+        List<Customer> GetAllCustomers();
 
         //method to save customer to file
-        bool SaveCustomers(List<CustomerModel> customers);
+        bool SaveCustomers(List<Customer> customers);
 
     }
 }

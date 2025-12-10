@@ -4,15 +4,24 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using CManager.Presentation.ConsoleApp.Validators;
+using CManager.Presentation.ConsoleApp.Interfaces;
 
 namespace CManager.Presentation.ConsoleApp.Controllers
 {
     public class MenuController
     {
+        //------------>Private fields. Implement Dependency Injection here!<---------------
+
         //create a private field of _customerService by its interface
 
         private readonly ICustomerService _customerService = new CustomerService();
-       
+
+        //create a private field of _userInputValidator by its interface
+
+        private readonly IUserInputValidator _userInputValidator = new UserInputValidator();
+
+
         //method to print menu
         public void PrintMenu()
         {
@@ -56,24 +65,103 @@ namespace CManager.Presentation.ConsoleApp.Controllers
         }
 
         //method to get user info and create a new customer
+        //Create a new method to ValidateInput(input, validationMethod)
+        // !!!!!!!!!!!!---------
         public void GetCustomerInfo()
 
         {
+            string firstName;
+            string lastName;
+            string email;
+            string telephone;
+            //Add validation for addres
+            bool isValid;
 
             Console.Clear();
             Console.WriteLine("Create customer");
 
-            Console.Write("First name:  ");
-            var firstName = Console.ReadLine()!;
 
-            Console.Write("Last name:  ");
-            var lastName = Console.ReadLine()!;
+            //loop to validate first name
+            do
+            {
+                Console.Write("First name:  ");
 
-            Console.Write("Email:  ");
-            var email = Console.ReadLine()!;
+                firstName = Console.ReadLine()!;
 
-            Console.Write("Telephone:  ");
-            var telephone = Console.ReadLine()!;
+                //return true if name is valid
+                isValid = _userInputValidator.ValidateName(firstName);
+
+                if (!isValid)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Invalid name! Please try again.");
+                }
+
+                //loop while isValid is false
+            } while (!isValid);
+
+
+            //loop to validate last name
+            do
+            {
+                Console.Write("Last name:  ");
+
+                lastName = Console.ReadLine()!;
+
+                //return true if name is valid
+                isValid = _userInputValidator.ValidateName(lastName);
+
+                if (!isValid)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Invalid name! Please try again.");
+                }
+
+                //loop while isValid is false
+            } while (!isValid);
+
+
+            //loop to validate email
+            do
+            {
+                Console.Write("Email:  ");
+
+                email = Console.ReadLine()!;
+
+                //return true if email is valid
+                isValid = _userInputValidator.ValidateEmail(email);
+
+                if (!isValid)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Invalid email! Please try again.");
+                }
+
+                //loop while isValid is false
+
+            } while (!isValid);
+
+
+            //loop to validate telephone
+            do
+            {
+                Console.Write("Telephone number:  ");
+
+                telephone = Console.ReadLine()!;
+
+                //return true if email is valid
+                isValid = _userInputValidator.ValidateTelephone(telephone);
+
+                if (!isValid)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Invalid number! Please try again.");
+                }
+
+                //loop while isValid is false
+
+            } while (!isValid);
+
 
             Console.Write("Street addres:  ");
             var streetAddres = Console.ReadLine()!;
