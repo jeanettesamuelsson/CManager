@@ -11,16 +11,16 @@ namespace CManager.Presentation.ConsoleApp.Controllers
 {
     public class MenuController
     {
-        //------------>Private fields. Implement Dependency Injection here!<---------------
+        //Private fields. Implement Dependency Injection here!<---------------
+        private readonly ICustomerService _customerService;
+        private readonly IUserInputValidator _userInputValidator;
 
-        //create a private field of _customerService by its interface
-
-        private readonly ICustomerService _customerService = new CustomerService();
-
-        //create a private field of _userInputValidator by its interface
-
-        private readonly IUserInputValidator _userInputValidator = new UserInputValidator();
-
+        //dependency injection 
+        public MenuController(ICustomerService customerService, IUserInputValidator userInputValidator)
+        {
+            _customerService = customerService;
+            _userInputValidator = userInputValidator;
+        }
 
         //method to print menu
         public void PrintMenu()
@@ -65,8 +65,8 @@ namespace CManager.Presentation.ConsoleApp.Controllers
         }
 
         //method to get user info and create a new customer
-        //Create a new method to ValidateInput(input, validationMethod)
-        // !!!!!!!!!!!!---------
+        //Create a new method to ValidateInput(input, validationMethod) 
+        
         public void GetCustomerInfo()
 
         {
@@ -74,7 +74,7 @@ namespace CManager.Presentation.ConsoleApp.Controllers
             string lastName;
             string email;
             string telephone;
-            //Add validation for addres
+            //Add validation for addres?
             bool isValid;
 
             Console.Clear();
@@ -187,24 +187,32 @@ namespace CManager.Presentation.ConsoleApp.Controllers
             Console.Clear();
             Console.WriteLine("All customers: ");
 
-            var customers = _customerService.GetAllCustomers();
+            var customers = _customerService.GetAllCustomers(out bool hasError);
 
-            foreach (var customer in customers)
+            if (hasError)
             {
-                Console.WriteLine($"Name: {customer.FirstName} {customer.LastName}");
-                Console.WriteLine($"Email: {customer.Email}");
-                Console.WriteLine($"Telephone: {customer.Telephone}");
-                Console.WriteLine($"Address: {customer.Addres.StreetAddres} {customer.Addres.PostalCode}");
-                Console.WriteLine($"ID: {customer.Id}");
-                Console.WriteLine();
-
+                Console.WriteLine("Error. Please try again!");
+                return;
             }
 
-            //If list of customers id empty
-            if (!customers.Any()) Console.WriteLine("No customers in the list. Please add som customers!");
-           
-            OutputDialog("Press any key to continue");
+            if (!customers.Any())
+            {
+                Console.WriteLine("List is empty. Please enter some customers!");
+            }
+            else
+            {
+                foreach (var customer in customers)
+                {
+                    Console.WriteLine($"Name: {customer.FirstName} {customer.LastName}");
+                    Console.WriteLine($"Email: {customer.Email}");
+                    Console.WriteLine($"Telephone: {customer.Telephone}");
+                    Console.WriteLine($"Address: {customer.Addres.StreetAddres} {customer.Addres.PostalCode}");
+                    Console.WriteLine($"ID: {customer.Id}");
+                    Console.WriteLine();
 
+                }
+
+            }
         }
 
 
@@ -214,7 +222,6 @@ namespace CManager.Presentation.ConsoleApp.Controllers
             Console.ReadKey();
 
         }
-
 
     }
 }

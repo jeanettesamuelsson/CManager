@@ -9,10 +9,10 @@ namespace CManager.Business.Interfaces
     public interface ICustomerService
     {
         //Create a new customer 
-        void CreateCustomer(string firstName, string lastName, string email, string telephone, string streetAddres, string postalCode, string city);
+        bool CreateCustomer(string firstName, string lastName, string email, string telephone, string streetAddres, string postalCode, string city);
 
         //Get all customers from list
-        List<Customer> GetAllCustomers();
+        IEnumerable<Customer> GetAllCustomers(out bool hasError);
 
         //Get specific customer from list
         Customer GetCustomerById(Guid Id);

@@ -15,10 +15,13 @@ namespace CManager.Infrastructure.Serialization
             PropertyNameCaseInsensitive = true,
         };
 
-        //Serialize from C# object to JSON string
+        //convert from C# object to JSON string
         public static string Serialize<T>(T content) => JsonSerializer.Serialize(content, options);
 
-        //Deserialize from JSON string to C# object
-        public static T Deserialize<T>(string json) => JsonSerializer.Deserialize<T>(json, options) ?? default;
+        //convert from JSON string to C# object
+        public static T Deserialize<T>(string json)
+        {
+            return JsonSerializer.Deserialize<T>(json, options) ?? default;
+        }
     }
 }

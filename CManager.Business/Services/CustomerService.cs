@@ -8,11 +8,17 @@ namespace CManager.Business.Services
     public class CustomerService : ICustomerService
 
     {
-        //Create readonly list of customers 
+        
+        
+        private readonly ICustomerRepository _customerRepository;
 
-        readonly List<Customer> _customers = [];
+        //DI
+        public CustomerService(ICustomerRepository customerRepository)
+        {
+            _customerRepository = customerRepository;
+        }
 
-        public void CreateCustomer(string firstName, string lastName, string email, string telephone, string streetAddres, string postalCode, string city)
+        public bool CreateCustomer(string firstName, string lastName, string email, string telephone, string streetAddres, string postalCode, string city)
         {
 
             //create customer and add to list
@@ -32,23 +38,54 @@ namespace CManager.Business.Services
                 }
             };
 
-            _customers.Add(customer);
+            //get list and add new customer to list
+
+            var customers = _customerRepository.GetAllCustomers();
+
+            customers.Add(customer);
+
+            //save bool true or false
+            var result = _customerRepository.SaveCustomers(customers);
+
+            return result;
+
 
         }
 
         //Method to get all customers from list
 
-        public List<Customer> GetAllCustomers()
+        public IEnumerable<Customer> GetAllCustomers(out bool hasError)
         {
-            return _customers;
+            hasError = false;
+
+            try
+            {
+                var customers = _customerRepository.GetAllCustomers();
+
+                return customers;
+
+
+            }
+            catch (Exception)
+            {
+                hasError = true;
+                return [];
+
+
+            }
+
         }
 
+       
+        
         //Get customer by ID
         public Customer GetCustomerById(Guid Id)
         {
+            var customers = _customerRepository.GetAllCustomers();
+
             //search for specific id and return customer
 
-            Customer customer = _customers.FirstOrDefault(c => c.Id == Id);
+            var customer = customers.FirstOrDefault(c => c.Id == Id);
 
             //return exception if customer do not exist
 
@@ -63,11 +100,13 @@ namespace CManager.Business.Services
 
         public void RemoveCustomer(Guid Id)
         {
+            var customers = _customerRepository.GetAllCustomers();
+
             //create new variable of customer to remove,
             //use GetCustomerByID to throw exception if user do not exist
 
             Customer toRemove = GetCustomerById(Id);
-            _customers.Remove(toRemove);
+            customers.Remove(toRemove);
 
 
         }

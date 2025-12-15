@@ -1,0 +1,92 @@
+﻿using CManager.Business.Interfaces;
+using CManager.Domain;
+using CManager.Infrastructure.Serialization;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Text.Json;
+
+namespace CManager.Infrastructure.Repositories
+{
+    internal class CustomerRepository : ICustomerRepository
+    {
+
+        private readonly string _filePath;
+        private readonly string _directoryPath;
+
+
+        //constructor to set file path and directory path
+        public CustomerRepository(string directoryPath = "Data", string fileName = "list.json")
+        {
+            _directoryPath = directoryPath;
+            _filePath = Path.Combine(_directoryPath, fileName);
+        }   
+
+        
+        //method to get all customers from file
+        public List<Customer> GetAllCustomers()
+        {
+            //return empty list if file does not exist
+            if (!File.Exists(_filePath))
+            {
+                return [];
+            }
+
+            try
+            {
+                var json = File.ReadAllText(_filePath);
+
+                //convert json to c# object 
+                var customers = JsonFormatter.Deserialize<List<Customer>>(json);
+
+                //return customers or empty list if null
+                return customers ?? [];
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error loading customers: {ex.Message}");
+                throw;
+            }
+
+        }
+
+
+        //method to save all customers to file
+        public bool SaveCustomers(List<Customer> customers)
+        {
+            if (customers == null)
+            {
+                return false;
+            }
+
+            try
+            {
+                //convert c# object to json
+                var json = JsonFormatter.Serialize(customers);
+
+                //create directory path if it does not exist
+                if (!Directory.Exists(_directoryPath))
+                {
+                    Directory.CreateDirectory(_directoryPath);
+                }
+                //write json to file
+                File.WriteAllText(_filePath, json);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error saving customers: {ex.Message}");
+                return false;
+
+            }
+
+
+
+
+
+        }
+
+    }
+
+}
