@@ -1,4 +1,4 @@
-﻿namespace CManager.Domain
+﻿namespace CManager.Domain.Models
 {
     public class Customer
 
@@ -8,7 +8,7 @@
         public string LastName { get; set; } = null!;
         public string Email { get; set; } = null!;
         public string Telephone { get; set; } = null!;
-        public AddresModel Addres { get; set; }
+        public AddresModel? Addres { get; set; }
 
     }
 

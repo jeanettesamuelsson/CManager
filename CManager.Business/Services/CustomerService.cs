@@ -1,15 +1,12 @@
 ﻿using CManager.Business.Interfaces;
-using CManager.Domain;
-using System.Collections.Generic;
-using System.Reflection;
+using CManager.Domain.Models;
+using System.Xml.Linq;
 
 namespace CManager.Business.Services
 {
     public class CustomerService : ICustomerService
 
     {
-        
-        
         private readonly ICustomerRepository _customerRepository;
 
         //DI
@@ -49,11 +46,9 @@ namespace CManager.Business.Services
 
             return result;
 
-
         }
 
         //Method to get all customers from list
-
         public IEnumerable<Customer> GetAllCustomers(out bool hasError)
         {
             hasError = false;
@@ -61,54 +56,63 @@ namespace CManager.Business.Services
             try
             {
                 var customers = _customerRepository.GetAllCustomers();
-
                 return customers;
-
-
             }
             catch (Exception)
             {
                 hasError = true;
                 return [];
-
-
             }
-
         }
 
-       
         
-        //Get customer by ID
-        public Customer GetCustomerById(Guid Id)
+        //Get customer by email
+        public Customer GetCustomerByEmail(string email)
         {
             var customers = _customerRepository.GetAllCustomers();
 
-            //search for specific id and return customer
+            //search for specific email and return that customer
 
-            var customer = customers.FirstOrDefault(c => c.Id == Id);
+            var customer = customers.FirstOrDefault( c => c.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
 
-            //return exception if customer do not exist
-
+           
             if (customer is null)
             {
-                throw new KeyNotFoundException($"The customer with Id {Id} does not exist.");
+                throw new KeyNotFoundException($"The customer with email {email} does not exist.");
             }
             else return customer;
         }
 
-        //Remove specific customer from list by ID
 
-        public void RemoveCustomer(Guid Id)
+
+        //Remove specific customer from list by email
+        public bool RemoveCustomerByEmail(string email)
         {
-            var customers = _customerRepository.GetAllCustomers();
+            try
+            {
+                var customers = _customerRepository.GetAllCustomers();
 
-            //create new variable of customer to remove,
-            //use GetCustomerByID to throw exception if user do not exist
+                //search for specific email and remove that customer
 
-            Customer toRemove = GetCustomerById(Id);
-            customers.Remove(toRemove);
+                var customerToRemove = customers.FirstOrDefault(c =>
+                    c.Email.Equals(email, StringComparison.OrdinalIgnoreCase)
+                );
 
+                if (customerToRemove is null)
+                {
+                    return false;
+                }
 
+                customers.Remove(customerToRemove);
+
+                //save list
+
+                return _customerRepository.SaveCustomers(customers);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }

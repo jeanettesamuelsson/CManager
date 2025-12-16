@@ -19,9 +19,9 @@ namespace CManager.Infrastructure.Serialization
         public static string Serialize<T>(T content) => JsonSerializer.Serialize(content, options);
 
         //convert from JSON string to C# object
-        public static T Deserialize<T>(string json)
+        public static T? Deserialize<T>(string json)
         {
-            return JsonSerializer.Deserialize<T>(json, options) ?? default;
+            return JsonSerializer.Deserialize<T>(json, options);
         }
     }
 }

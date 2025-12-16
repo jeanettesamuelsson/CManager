@@ -1,4 +1,4 @@
-﻿using CManager.Domain;
+﻿using CManager.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,10 +15,10 @@ namespace CManager.Business.Interfaces
         IEnumerable<Customer> GetAllCustomers(out bool hasError);
 
         //Get specific customer from list
-        Customer GetCustomerById(Guid Id);
+        Customer GetCustomerByEmail(string email);
 
         //Remove specific customer from list
-        void RemoveCustomer(Guid Id);
-        
+        bool RemoveCustomerByEmail(string email);
+
     }
 }

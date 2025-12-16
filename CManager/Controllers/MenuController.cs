@@ -34,6 +34,10 @@ namespace CManager.Presentation.ConsoleApp.Controllers
 
                 Console.WriteLine("Option 2: View all customers");
 
+                Console.WriteLine("Option 3: View customer by email-adress");
+
+                Console.WriteLine("Option 4: Remove Customer");
+
                 Console.WriteLine("Option 0: Exit");
 
                 Console.Write("Choose option: ");
@@ -53,6 +57,14 @@ namespace CManager.Presentation.ConsoleApp.Controllers
 
                         break;
 
+                    case "3":
+                        ViewCustomerByEmail();
+                        break;
+
+                    case "4":
+                        RemoveCustomer();
+                        break;
+
                     case "0":
                         return;
 
@@ -66,7 +78,7 @@ namespace CManager.Presentation.ConsoleApp.Controllers
 
         //method to get user info and create a new customer
         //Create a new method to ValidateInput(input, validationMethod) 
-        
+
         public void GetCustomerInfo()
 
         {
@@ -173,12 +185,13 @@ namespace CManager.Presentation.ConsoleApp.Controllers
             var city = Console.ReadLine()!;
 
             _customerService.CreateCustomer(firstName, lastName, email, telephone, postalCode, streetAddres, city);
-            
-          
+
+
             Console.WriteLine("Customer created!");
             Console.WriteLine($"Name:  {firstName} Lastname: {lastName}");
-           
-            OutputDialog("Press any key to continue");
+
+            Console.WriteLine("Press any key to continue");
+            Console.ReadKey();
         }
 
         //method to print all customers
@@ -197,31 +210,72 @@ namespace CManager.Presentation.ConsoleApp.Controllers
 
             if (!customers.Any())
             {
-                Console.WriteLine("List is empty. Please enter some customers!");
+                Console.WriteLine("List is empty. Please add some customers!");
             }
             else
             {
                 foreach (var customer in customers)
                 {
                     Console.WriteLine($"Name: {customer.FirstName} {customer.LastName}");
-                    Console.WriteLine($"Email: {customer.Email}");
-                    Console.WriteLine($"Telephone: {customer.Telephone}");
-                    Console.WriteLine($"Address: {customer.Addres.StreetAddres} {customer.Addres.PostalCode}");
                     Console.WriteLine($"ID: {customer.Id}");
+                    Console.WriteLine($"Email: {customer.Email}");
                     Console.WriteLine();
-
+                    
                 }
-
             }
-        }
 
-
-        private void OutputDialog(string message)
-        {
-            Console.WriteLine(message);
             Console.ReadKey();
-
         }
 
+        // method to view customer by email
+        public void ViewCustomerByEmail()
+        {
+            Console.Clear();
+            Console.Write("Enter email to search for customer: ");
+
+            //get email from user and call GetCustomerByEmail method
+
+            var email = Console.ReadLine()!;
+            var customer = _customerService.GetCustomerByEmail(email);
+
+            Console.WriteLine($"Name: {customer.FirstName} {customer.LastName}");
+            Console.WriteLine($"ID: {customer.Id}");
+            Console.WriteLine($"Email: {customer.Email}");
+            Console.WriteLine($"Telephone: {customer.Telephone}");
+
+            if (customer.Addres != null)
+            {
+                Console.WriteLine($"Addres: {customer.Addres.StreetAddres}, {customer.Addres.PostalCode}, {customer.Addres.City}");
+            }
+            
+            Console.WriteLine("Press any key to continue");
+            Console.ReadKey();
+        }
+
+
+        //method to remove customer by email,
+        //will print a message if customer was removed successfully or not found
+        public void RemoveCustomer()
+        {
+            Console.Clear();
+            Console.Write("Enter email of customer to remove: ");
+            var email = Console.ReadLine()!;
+
+            //get bool value from RemoveCustomerByEmail method
+            var removed = _customerService.RemoveCustomerByEmail(email);
+
+
+            if (removed)
+            {
+                Console.WriteLine("Customer removed successfully.");
+            }
+            else
+            {
+                Console.WriteLine("Customer not found.");
+            }
+
+            Console.WriteLine("Press any key to continue");
+            Console.ReadKey();
+        }
     }
 }

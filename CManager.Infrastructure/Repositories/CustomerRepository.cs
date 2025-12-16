@@ -1,5 +1,5 @@
 ﻿using CManager.Business.Interfaces;
-using CManager.Domain;
+using CManager.Domain.Models;
 using CManager.Infrastructure.Serialization;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Text.Json;
 
 namespace CManager.Infrastructure.Repositories
 {
-    internal class CustomerRepository : ICustomerRepository
+    public class CustomerRepository : ICustomerRepository
     {
 
         private readonly string _filePath;

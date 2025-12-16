@@ -1,7 +1,5 @@
-﻿using CManager.Domain;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using CManager.Domain.Models;
+
 
 namespace CManager.Business.Interfaces
 {
