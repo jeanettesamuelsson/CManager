@@ -29,6 +29,7 @@ namespace CManager.Presentation.ConsoleApp.Controllers
             {
                 Console.Clear();
                 Console.WriteLine("CManager - Manage Your Customers");
+                Console.WriteLine("**********************************");
 
                 Console.WriteLine("Option 1: Create customer");
 
@@ -184,11 +185,21 @@ namespace CManager.Presentation.ConsoleApp.Controllers
             Console.Write("City:  ");
             var city = Console.ReadLine()!;
 
-            _customerService.CreateCustomer(firstName, lastName, email, telephone, postalCode, streetAddres, city);
+
+            //get true or false from CreateCustomer method
+
+            var isCreated = _customerService.CreateCustomer(firstName, lastName, email, telephone, postalCode, streetAddres, city);
 
 
-            Console.WriteLine("Customer created!");
-            Console.WriteLine($"Name:  {firstName} Lastname: {lastName}");
+            if (isCreated)
+            {
+                Console.WriteLine("Success!");
+                Console.WriteLine($"Customer {firstName} Lastname: {lastName} is added!");
+            }
+            else
+            {
+                Console.WriteLine("A customer with this email already exists. Please try again!");
+            }
 
             Console.WriteLine("Press any key to continue");
             Console.ReadKey();

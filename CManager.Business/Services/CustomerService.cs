@@ -1,5 +1,6 @@
 ﻿using CManager.Business.Interfaces;
 using CManager.Domain.Models;
+using System.Linq;
 using System.Xml.Linq;
 
 namespace CManager.Business.Services
@@ -17,6 +18,16 @@ namespace CManager.Business.Services
 
         public bool CreateCustomer(string firstName, string lastName, string email, string telephone, string streetAddres, string postalCode, string city)
         {
+            //get list 
+
+            var customers = _customerRepository.GetAllCustomers();
+
+            //check if email already exists with .Any (lambda expression for each c in customers, compare email, ignore case sensitivity
+
+            if (customers.Any(c => c.Email.Equals(email,StringComparison.OrdinalIgnoreCase )))
+            {
+                return false;
+            }
 
             //create customer and add to list
 
@@ -35,13 +46,9 @@ namespace CManager.Business.Services
                 }
             };
 
-            //get list and add new customer to list
-
-            var customers = _customerRepository.GetAllCustomers();
-
             customers.Add(customer);
 
-            //save bool true or false
+            //save bool true or false from save customers method
             var result = _customerRepository.SaveCustomers(customers);
 
             return result;
@@ -71,7 +78,7 @@ namespace CManager.Business.Services
         {
             var customers = _customerRepository.GetAllCustomers();
 
-            //search for specific email and return that customer
+            //search for specific email and return that customer (lambda expression for each c in customers, compare email, ignore case sensitivity)
 
             var customer = customers.FirstOrDefault( c => c.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
 
@@ -94,8 +101,7 @@ namespace CManager.Business.Services
 
                 //search for specific email and remove that customer
 
-                var customerToRemove = customers.FirstOrDefault(c =>
-                    c.Email.Equals(email, StringComparison.OrdinalIgnoreCase)
+                var customerToRemove = customers.FirstOrDefault(c => c.Email.Equals(email, StringComparison.OrdinalIgnoreCase)
                 );
 
                 if (customerToRemove is null)
