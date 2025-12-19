@@ -194,7 +194,7 @@ namespace CManager.Presentation.ConsoleApp.Controllers
             if (isCreated)
             {
                 Console.WriteLine("Success!");
-                Console.WriteLine($"Customer {firstName} Lastname: {lastName} is added!");
+                Console.WriteLine($"Customer {firstName} {lastName} is added!");
             }
             else
             {
@@ -231,7 +231,7 @@ namespace CManager.Presentation.ConsoleApp.Controllers
                     Console.WriteLine($"ID: {customer.Id}");
                     Console.WriteLine($"Email: {customer.Email}");
                     Console.WriteLine();
-                    
+
                 }
             }
 
@@ -258,7 +258,7 @@ namespace CManager.Presentation.ConsoleApp.Controllers
             {
                 Console.WriteLine($"Addres: {customer.Addres.StreetAddres}, {customer.Addres.PostalCode}, {customer.Addres.City}");
             }
-            
+
             Console.WriteLine("Press any key to continue");
             Console.ReadKey();
         }
@@ -272,21 +272,35 @@ namespace CManager.Presentation.ConsoleApp.Controllers
             Console.Write("Enter email of customer to remove: ");
             var email = Console.ReadLine()!;
 
-            //get bool value from RemoveCustomerByEmail method
-            var removed = _customerService.RemoveCustomerByEmail(email);
+            //confirmation before deleting
 
+            Console.Write($"Do you want to remove customer with email:  {email}? (y/n): ");
+            var confirmation = Console.ReadLine()!.ToLower();
 
-            if (removed)
+            if (confirmation == "n")
             {
-                Console.WriteLine("Customer removed successfully.");
-            }
-            else
-            {
-                Console.WriteLine("Customer not found.");
+                Console.WriteLine("Operation cancelled. Press any key to continue.");
+                Console.ReadKey();
+                return;
             }
 
-            Console.WriteLine("Press any key to continue");
-            Console.ReadKey();
+            if (confirmation == "y")
+            {
+                //get bool value from RemoveCustomerByEmail method
+                var removed = _customerService.RemoveCustomerByEmail(email);
+                if (removed)
+                {
+                    Console.WriteLine("Customer removed successfully.");
+                }
+                else
+                {
+                    Console.WriteLine("Customer not found.");
+                }
+
+                Console.WriteLine("Press any key to continue");
+                Console.ReadKey();
+            }
         }
     }
+
 }
