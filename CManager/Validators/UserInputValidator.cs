@@ -14,8 +14,6 @@ namespace CManager.Presentation.ConsoleApp.Validators
         {
             if (string.IsNullOrWhiteSpace(content)) return false;
 
-            // OBS ANVÄNT AI FÖR ATT SKRIVA REGEX-UTTRYCKET
-
             //Used Gemini PRO to write Regular Expression with parameters for length >2, <50, allow letters, spaces and hyphens only
 
             string regex = @"^[\p{L}\s\-]{2,50}$";
@@ -60,8 +58,6 @@ namespace CManager.Presentation.ConsoleApp.Validators
 
             var trimmedNum = telephone.Replace(" ", string.Empty);
 
-            // OBS ANVÄNT AI FÖR ATT SKRIVA REGEX-UTTRYCKET
-
             //Used Gemini PRO to write Regular Expression with parameters for length >8, <15, allow digits, spaces, hyphens, parentheses and plus sign only
             string pattern = @"^[\d\s\-\+\(\)]{8,15}$";
 
@@ -69,6 +65,19 @@ namespace CManager.Presentation.ConsoleApp.Validators
             return Regex.IsMatch(trimmedNum, pattern);
         }
 
+        //method to validate postal code
+        public bool ValidatePostalCode(string postalCode)
+        {
+            if (string.IsNullOrWhiteSpace(postalCode)) return false;
+
+            var trimmedNum = postalCode.Replace(" ", string.Empty);
+
+            //Used Gemini PRO to write Regular Expression
+            string pattern = @"^\d{5}$";
+
+            return Regex.IsMatch(trimmedNum, pattern);
+
+        }
 
     }
 }

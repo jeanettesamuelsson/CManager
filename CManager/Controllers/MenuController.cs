@@ -1,11 +1,12 @@
 ﻿using CManager.Business.Interfaces;
 using CManager.Business.Services;
+using CManager.Presentation.ConsoleApp.Interfaces;
+using CManager.Presentation.ConsoleApp.Validators;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
-using CManager.Presentation.ConsoleApp.Validators;
-using CManager.Presentation.ConsoleApp.Interfaces;
+using System.Reflection.Emit;
+using System.Text;
 
 namespace CManager.Presentation.ConsoleApp.Controllers
 {
@@ -78,114 +79,31 @@ namespace CManager.Presentation.ConsoleApp.Controllers
         }
 
         //method to get user info and create a new customer
-        //Create a new method to ValidateInput(input, validationMethod) 
+        //Create a new method to ValidateInput(input, validationMethod, error message) 
 
         public void GetCustomerInfo()
 
         {
-            string firstName;
-            string lastName;
-            string email;
-            string telephone;
-            //Add validation for addres?
-            bool isValid;
-
             Console.Clear();
             Console.WriteLine("Create customer");
 
+            //use GetValidatedInput method to get all inputs from user
 
-            //loop to validate first name
-            do
-            {
-                Console.Write("First name:  ");
+            string firstName = GetValidatedInput("First name", _userInputValidator.ValidateName, "Invalid name! Please try again.");
 
-                firstName = Console.ReadLine()!;
+            string lastName = GetValidatedInput("Last name", _userInputValidator.ValidateName, "Invalid name! Please try again.");
 
-                //return true if name is valid
-                isValid = _userInputValidator.ValidateName(firstName);
+            string email = GetValidatedInput("Email", _userInputValidator.ValidateEmail, "Invalid email! Please try again.");
 
-                if (!isValid)
-                {
-                    Console.Clear();
-                    Console.WriteLine("Invalid name! Please try again.");
-                }
+            string telephone = GetValidatedInput("Telephone number", _userInputValidator.ValidateTelephone, "Invalid number! Please try again.");
 
-                //loop while isValid is false
-            } while (!isValid);
+            string streetAddres = GetValidatedInput("Street addres", _userInputValidator.ValidateName, "Invalid street addres! Please try again.");
 
+            string postalCode = GetValidatedInput("Postal code", _userInputValidator.ValidatePostalCode, "Invalid postal code! Please try again.");
 
-            //loop to validate last name
-            do
-            {
-                Console.Write("Last name:  ");
+            string city = GetValidatedInput("City", _userInputValidator.ValidateName, "Invalid city! Please try again.");
 
-                lastName = Console.ReadLine()!;
-
-                //return true if name is valid
-                isValid = _userInputValidator.ValidateName(lastName);
-
-                if (!isValid)
-                {
-                    Console.Clear();
-                    Console.WriteLine("Invalid name! Please try again.");
-                }
-
-                //loop while isValid is false
-            } while (!isValid);
-
-
-            //loop to validate email
-            do
-            {
-                Console.Write("Email:  ");
-
-                email = Console.ReadLine()!;
-
-                //return true if email is valid
-                isValid = _userInputValidator.ValidateEmail(email);
-
-                if (!isValid)
-                {
-                    Console.Clear();
-                    Console.WriteLine("Invalid email! Please try again.");
-                }
-
-                //loop while isValid is false
-
-            } while (!isValid);
-
-
-            //loop to validate telephone
-            do
-            {
-                Console.Write("Telephone number:  ");
-
-                telephone = Console.ReadLine()!;
-
-                //return true if email is valid
-                isValid = _userInputValidator.ValidateTelephone(telephone);
-
-                if (!isValid)
-                {
-                    Console.Clear();
-                    Console.WriteLine("Invalid number! Please try again.");
-                }
-
-                //loop while isValid is false
-
-            } while (!isValid);
-
-
-            Console.Write("Street addres:  ");
-            var streetAddres = Console.ReadLine()!;
-
-            Console.Write("Postal code:  ");
-            var postalCode = Console.ReadLine()!;
-
-            Console.Write("City:  ");
-            var city = Console.ReadLine()!;
-
-
+           
             //get true or false from CreateCustomer method
 
             var isCreated = _customerService.CreateCustomer(firstName, lastName, email, telephone, postalCode, streetAddres, city);
@@ -301,6 +219,30 @@ namespace CManager.Presentation.ConsoleApp.Controllers
                 Console.ReadKey();
             }
         }
-    }
 
+        //method to get validated inut from user
+        private string GetValidatedInput(string prompt, Func<string, bool> validationMethod, string errorMessage)
+         {
+            string userInput;
+            bool isValid;
+
+            do
+            {
+                Console.Write($"{prompt}: ");
+                userInput = Console.ReadLine()!;
+
+                //send userInput into validation method
+                isValid = validationMethod(userInput);
+
+                if (!isValid)           
+                {
+                    Console.WriteLine(errorMessage);
+                }
+
+            } while (!isValid);
+
+            return userInput;
+
+        }
+    }
 }

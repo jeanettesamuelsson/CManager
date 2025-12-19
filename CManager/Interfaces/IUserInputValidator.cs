@@ -19,5 +19,7 @@ namespace CManager.Presentation.ConsoleApp.Interfaces
         //validate telephone number
         bool ValidateTelephone(string telephone);
 
+        //validate postal code
+        bool ValidatePostalCode(string postalCode);
     }
 }
