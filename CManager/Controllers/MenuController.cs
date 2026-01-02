@@ -1,12 +1,6 @@
 ﻿using CManager.Business.Interfaces;
-using CManager.Business.Services;
 using CManager.Presentation.ConsoleApp.Interfaces;
-using CManager.Presentation.ConsoleApp.Validators;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
+
 
 namespace CManager.Presentation.ConsoleApp.Controllers
 {

@@ -18,41 +18,48 @@ namespace CManager.Business.Services
 
         public bool CreateCustomer(string firstName, string lastName, string email, string telephone, string streetAddres, string postalCode, string city)
         {
-            //get list 
+            try
+            {
+                //get list 
 
-            var customers = _customerRepository.GetAllCustomers();
+                var customers = _customerRepository.GetAllCustomers();
 
-            //check if email already exists with .Any (lambda expression for each c in customers, compare email, ignore case sensitivity
+                //check if email already exists with .Any (lambda expression for each c in customers, compare email, ignore case sensitivity
 
-            if (customers.Any(c => c.Email.Equals(email,StringComparison.OrdinalIgnoreCase )))
+                if (customers.Any(c => c.Email.Equals(email, StringComparison.OrdinalIgnoreCase)))
+                {
+                    return false;
+                }
+
+                //create customer and add to list
+
+                Customer customer = new Customer
+                {
+                    FirstName = firstName,
+                    LastName = lastName,
+                    Email = email,
+                    Telephone = telephone,
+                    Id = Guid.NewGuid(),
+                    Addres = new AddresModel
+                    {
+                        StreetAddres = streetAddres,
+                        PostalCode = postalCode,
+                        City = city
+                    }
+                };
+
+                customers.Add(customer);
+
+                //save bool true or false from save customers method
+                var result = _customerRepository.SaveCustomers(customers);
+
+                return result;
+
+            }
+            catch (Exception)
             {
                 return false;
             }
-
-            //create customer and add to list
-
-            Customer customer = new Customer
-            {
-                FirstName = firstName,
-                LastName = lastName,
-                Email = email,
-                Telephone = telephone,
-                Id = Guid.NewGuid(),
-                Addres = new AddresModel
-                {
-                    StreetAddres = streetAddres,
-                    PostalCode = postalCode,
-                    City = city
-                }
-            };
-
-            customers.Add(customer);
-
-            //save bool true or false from save customers method
-            var result = _customerRepository.SaveCustomers(customers);
-
-            return result;
-
         }
 
         //Method to get all customers from list
@@ -68,11 +75,13 @@ namespace CManager.Business.Services
             catch (Exception)
             {
                 hasError = true;
+
+                //returns empty list if error occurs
                 return [];
             }
         }
 
-        
+
         //Get customer by email
         public Customer GetCustomerByEmail(string email)
         {
@@ -80,9 +89,9 @@ namespace CManager.Business.Services
 
             //search for specific email and return that customer (lambda expression for each c in customers, compare email, ignore case sensitivity)
 
-            var customer = customers.FirstOrDefault( c => c.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
+            var customer = customers.FirstOrDefault(c => c.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
 
-           
+
             if (customer is null)
             {
                 throw new KeyNotFoundException($"The customer with email {email} does not exist.");
