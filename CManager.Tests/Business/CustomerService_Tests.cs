@@ -2,7 +2,6 @@
 using CManager.Business.Services;
 using CManager.Domain.Models;
 using NSubstitute;
-using NSubstitute.Core;
 using NSubstitute.ExceptionExtensions;
 
 

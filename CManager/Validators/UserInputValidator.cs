@@ -1,8 +1,5 @@
 ﻿using CManager.Presentation.ConsoleApp.Interfaces;
-using System;
-using System.Collections.Generic;
 using System.Net.Mail;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace CManager.Presentation.ConsoleApp.Validators

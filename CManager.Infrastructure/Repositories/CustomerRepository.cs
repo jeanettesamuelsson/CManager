@@ -1,10 +1,6 @@
 ﻿using CManager.Business.Interfaces;
 using CManager.Domain.Models;
 using CManager.Infrastructure.Serialization;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Text.Json;
 
 namespace CManager.Infrastructure.Repositories
 {

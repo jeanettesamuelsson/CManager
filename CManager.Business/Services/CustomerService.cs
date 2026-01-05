@@ -1,7 +1,5 @@
 ﻿using CManager.Business.Interfaces;
 using CManager.Domain.Models;
-using System.Linq;
-using System.Xml.Linq;
 
 namespace CManager.Business.Services
 {
