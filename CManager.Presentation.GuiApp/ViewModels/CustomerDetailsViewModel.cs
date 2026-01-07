@@ -1,10 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+
 
 namespace CManager.Presentation.GuiApp.ViewModels
 {
-    internal class CustomerDetailsViewModel
+    public class CustomerDetailsViewModel : ObservableObject
     {
+        // Add properties and logic as needed
     }
+
+    
 }

@@ -9,9 +9,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Gemini_Generated_Logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.1" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CManager.Business\CManager.Business.csproj" />
+    <ProjectReference Include="..\CManager.Domain\CManager.Domain.csproj" />
+    <ProjectReference Include="..\CManager.Infrastructure\CManager.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Gemini_Generated_Logo.png" />
   </ItemGroup>
 
 </Project>

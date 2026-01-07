@@ -4,9 +4,50 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CManager.Presentation.GuiApp.Views"
+             xmlns:viewmodels="clr-namespace:CManager.Presentation.GuiApp.ViewModels"
+             d:DataContext="{d:DesignInstance Type=viewmodels:CustomerAddViewModel}"
+
+             
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+             d:DesignHeight="450" d:DesignWidth="300">
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Add New Customer" FontSize="20" FontWeight="Bold"/>
+
+        <StackPanel Grid.Row="1" Margin="0 20 0 0">
+            <TextBlock Text="Name"/>
+            <TextBox Text="{Binding FirstName}" Margin="0 0 0 10" Padding="5"/>
+
+            <TextBlock Text="Last name"/>
+            <TextBox Text="{Binding LastName}" Margin="0 0 0 10" Padding="5"/>
+
+            <TextBlock Text="Email"/>
+            <TextBox Text="{Binding Email}" Margin="0 0 0 10" Padding="5"/>
+
+            <TextBlock Text="Phone number"/>
+            <TextBox Text="{Binding PhoneNumber}" Margin="0 0 0 10" Padding="5"/>
+
+            <TextBlock Text="Street address"/>
+            <TextBox Text="{Binding StreetAddres}" Margin="0 0 0 10" Padding="5"/>
+
+            <TextBlock Text="Postal code"/>
+            <TextBox Text="{Binding PostalCode}" Margin="0 0 0 10" Padding="5"/>
+
+            <TextBlock Text="City"/>
+            <TextBox Text="{Binding City}" Margin="0 0 0 10" Padding="5"/>
+
+        </StackPanel>
+
+        <StackPanel Grid.Row="2">
+            <Button Content="Save" Margin="0 10 0 5" Command="{Binding SaveCommand}"/>
+            <Button Content="Cancel" Margin="0 10 0 5" Command="{Binding CancelCommand}"/>
+        </StackPanel>
+
     </Grid>
+        
 </UserControl>

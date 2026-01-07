@@ -3,44 +3,38 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        
         xmlns:local="clr-namespace:CManager.Presentation.GuiApp"
         xmlns:viewmodels="clr-namespace:CManager.Presentation.GuiApp.ViewModels"
         xmlns:views="clr-namespace:CManager.Presentation.GuiApp.Views" 
         d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        WindowStyle="None"
-        Background="Transparent"
-        AllowsTransparency="True"
-        Title="CManager" Height="450" Width="400">
-
+        Background="LightGray"
+        
+        Title="CManager" Height="450" Width="300">
 
     <Grid>
-
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
             <RowDefinition Height="*"/>
-
         </Grid.RowDefinitions>
         
-        <ContentControl Content="{Binding CurrentViewModel}">
-
+        <ContentControl Grid.Row="1" Content="{Binding CurrentViewModel}">
             <ContentControl.Resources>
+                <DataTemplate DataType="{x:Type viewmodels:HomeViewModel}">
+                    <views:HomeView/>
+                </DataTemplate>
                 <DataTemplate DataType="{x:Type viewmodels:CustomerAddViewModel}">
-                    <local:CustomerAdd/>
+                    <views:CustomerAddView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewmodels:CustomerListViewModel}">
+                    <views:CustomerListView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewmodels:CustomerDetailsViewModel}">
+                    <views:CustomerDetailsView/>
                 </DataTemplate>
             </ContentControl.Resources>
         </ContentControl>
 
-        
-
-        <Grid x:Name="TopBar" Grid.Row="0" Background="Transparent" MouseDown="TopBar_MouseDown">
-            <Button Style="{StaticResource ExitBtn}"
-                Margin="0 0 30 0"/>
-
-        </Grid>
-        
-        
     </Grid>
 </Window>

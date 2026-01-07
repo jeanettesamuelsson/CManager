@@ -4,9 +4,62 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CManager.Presentation.GuiApp.Views"
+             xmlns:viewmodels="clr-namespace:CManager.Presentation.GuiApp.ViewModels"
+             d:DataContext="{d:DesignInstance Type=viewmodels:CustomerListViewModel}"
+             
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+             d:DesignHeight="450" d:DesignWidth="300">
+    
+    
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Row="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Column="0" Text="Customers" FontSize="25" FontWeight="Bold"/>
+        <Button Grid.Column="1" Command="{Binding GoToAddCustomerViewCommand}" Content="&#xE710;" FontFamily="Segoe MDL2 Assets" Padding="7 0"/>
+
     </Grid>
+
+    <ListView Grid.Row="1" ItemsSource="{Binding Customers}" Margin="0 20 0 0" HorizontalContentAlignment="Stretch">
+        <ListView.ItemTemplate>
+            <DataTemplate DataType="models:Customer">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+
+                    </Grid.ColumnDefinitions>
+
+
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="{Binding Name}"/>
+                        <TextBlock Text="{Binding LastName}"/>
+                        <TextBlock Text="{Binding Email}"/>
+
+
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                            <Button Command ="{Binding GoToCustomerDetailsViewCommand}" Content="&#xE710;" FontFamily="Segoe MDL2 Assets"/>
+
+                    </StackPanel>
+
+                </Grid>
+
+            </DataTemplate>
+        </ListView.ItemTemplate>
+
+    </ListView>
+
+    </Grid>
+
 </UserControl>
