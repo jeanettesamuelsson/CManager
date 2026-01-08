@@ -8,7 +8,7 @@
              d:DataContext="{d:DesignInstance Type=viewmodels:HomeViewModel}"
              
              mc:Ignorable="d" 
-             d:DesignHeight="650" d:DesignWidth="400">
+             d:DesignHeight="700" d:DesignWidth="400">
     <Border CornerRadius="0 0 25 25">
         <Grid>
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -17,20 +17,20 @@
 
                 <Button Content="VIEW CUSTOMERS" 
                         Background="CornflowerBlue" 
-                        Foreground="Black"
+                        Foreground="White"
                         FontWeight="Bold"
                         Command="{Binding DataContext.NavigateToCustomerListCommand, RelativeSource={RelativeSource AncestorType=Window}}"
                         Height="50" Width="150" Margin="20"
                         BorderBrush="AliceBlue"
-                        BorderThickness="2"
+                        BorderThickness="1"
                         />
 
                 <Button Content="ADD CUSTOMER" 
                         Background="CornflowerBlue" 
-                        Foreground="Black"
+                        Foreground="White"
                         FontWeight="Bold"
                         BorderBrush="AliceBlue"
-                        BorderThickness="2"
+                        BorderThickness="1"
                         Command="{Binding DataContext.NavigateToCustomerAddCommand, RelativeSource={RelativeSource AncestorType=Window}}"
                         Height="50" Width="150" Margin="20"/>
 

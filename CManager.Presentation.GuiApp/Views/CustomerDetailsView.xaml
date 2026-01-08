@@ -7,7 +7,7 @@
              xmlns:viewmodels="clr-namespace:CManager.Presentation.GuiApp.ViewModels"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=viewmodels:CustomerDetailsViewModel}"
-             d:DesignHeight="650" d:DesignWidth="400">
+             d:DesignHeight="700" d:DesignWidth="400">
     
     
     <Grid Margin="15">
@@ -19,27 +19,40 @@
 
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Text="Details" FontSize="25" Foreground="LightGray"/>
+        <TextBlock Grid.Row="0" Grid.Column="0" 
+                   Text="Details" FontSize="20"
+                   Foreground="LightGray" 
+                   HorizontalAlignment="Center"/>
 
             <StackPanel Grid.Row="1" Margin="0 20 0 0">
-                <TextBlock Text="Name" FontSize="16" FontWeight="Bold" Foreground="Gray" Margin="0,15,0,10"/>
-                <TextBlock Text="{Binding SelectedCustomer.FirstName}" FontSize="16" Margin="0,0,0,2"/>
-                <TextBlock Text="{Binding SelectedCustomer.LastName}" FontSize="16"/>
+                <TextBlock Text="Name" FontSize="14" FontWeight="Bold" Foreground="Gray" Margin="0,15,0,10"/>
+                <TextBlock Text="{Binding SelectedCustomer.FirstName}" 
+                           Foreground="LightGray" FontSize="14" Margin="0,0,0,2"/>
+            <TextBlock Text="{Binding SelectedCustomer.LastName}" 
+                           Foreground="LightGray" FontSize="14" Margin="0,0,0,10"/>
 
-                <TextBlock Text="E-mail" FontSize="16" FontWeight="Bold" Foreground="Gray" Margin="0,15,0,10"/>
-                <TextBlock Text="{Binding SelectedCustomer.Email}" Margin="0 0 0 10" Padding="5"/>
+            <TextBlock Text="E-mail" FontSize="14" FontWeight="Bold" Foreground="Gray" Margin="0,15,0,10"/>
+                <TextBlock Text="{Binding SelectedCustomer.Email}" 
+                           Foreground="LightGray"
+                           Margin="0 0 0 10" Padding="5"/>
 
-                <TextBlock Text="Telephone Number" FontSize="16" FontWeight="Bold" Foreground="Gray" Margin="0,15,0,10"/>
-                <TextBlock Text="{Binding SelectedCustomer.Telephone}" Margin="0 0 0 10" Padding="5"/>
+                <TextBlock Text="Telephone Number" FontSize="14" FontWeight="Bold" Foreground="Gray" Margin="0,15,0,10"/>
+                <TextBlock Text="{Binding SelectedCustomer.Telephone}" 
+                           Foreground="LightGray"
+                           Margin="0 0 0 10" Padding="5"/>
 
-                <TextBlock Text="Street Address" FontSize="16" FontWeight="Bold" Foreground="Gray" Margin="0,15,0,10"/>
-                <TextBlock Text="{Binding SelectedCustomer.Addres.StreetAddres}" Margin="0 0 0 10" Padding="5"/>
+                <TextBlock Text="Street Address" FontSize="14" FontWeight="Bold" Foreground="Gray" Margin="0,15,0,10"/>
+                <TextBlock Text="{Binding SelectedCustomer.Addres.StreetAddres}" Margin="0 0 0 10" Padding="5"
+                           Foreground="LightGray"/>
 
-                <TextBlock Text="Postal Code" FontSize="16" FontWeight="Bold" Foreground="Gray" Margin="0,15,0,10"/>
-                <TextBlock Text="{Binding SelectedCustomer.Addres.PostalCode}" Margin="0 0 0 10" Padding="5"/>
+                <TextBlock Text="Postal Code" FontSize="14" FontWeight="Bold" Foreground="Gray" Margin="0,15,0,10"/>
+                <TextBlock Text="{Binding SelectedCustomer.Addres.PostalCode}" 
+                           Foreground="LightGray" Margin="0 0 0 10" Padding="5"/>
 
-                <TextBlock Text="City" FontSize="16" FontWeight="Bold" Foreground="Gray" Margin="0,15,0,10"/>
-                <TextBlock Text="{Binding SelectedCustomer.Addres.City}" Margin="0 0 0 10" Padding="5"/>
+                <TextBlock Text="City" FontSize="14" FontWeight="Bold" Foreground="Gray" Margin="0,15,0,10"/>
+                <TextBlock Text="{Binding SelectedCustomer.Addres.City}" 
+                           Foreground="LightGray"
+                           Margin="0 0 0 10" Padding="5"/>
 
 
             </StackPanel>

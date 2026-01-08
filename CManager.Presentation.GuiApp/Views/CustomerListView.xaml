@@ -8,7 +8,7 @@
              d:DataContext="{d:DesignInstance Type=viewmodels:CustomerListViewModel}"
              
              mc:Ignorable="d" 
-             d:DesignHeight="650" d:DesignWidth="400">
+             d:DesignHeight="700" d:DesignWidth="400">
     
     
     <Grid Margin="15">
@@ -24,8 +24,17 @@
 
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Column="0" Text="Customers" FontSize="25" FontWeight="Bold"/>
-        <Button Grid.Column="1" Command="{Binding GoToAddCustomerViewCommand}" Content="&#xE710;" FontFamily="Segoe MDL2 Assets" Padding="7 0"/>
+        <TextBlock Grid.Column="0" 
+                   Text="Customers"
+                   HorizontalAlignment="Center"
+                   FontSize="20" 
+                   FontWeight="Bold"
+                   Foreground="LightGray"/>
+        <Button Grid.Column="1" Command="{Binding GoToAddCustomerViewCommand}" 
+                Content="&#xE710;" 
+                FontFamily="Segoe MDL2 Assets" 
+                Padding="7 0"
+                Background="CornflowerBlue"/>
 
     </Grid>
 
@@ -45,18 +54,27 @@
 
 
                     <StackPanel Grid.Column="0">
-                        <TextBlock Text="{Binding FirstName}"/>
-                        <TextBlock Text="{Binding LastName}"/>
-                        <TextBlock Text="{Binding Email}"/>
+                        <TextBlock Text="{Binding FirstName}"
+                                   Foreground="LightGray"
+                                   FontSize="14"/>
+                        <TextBlock Text="{Binding LastName}"
+                                   Foreground="LightGray"
+                                   FontSize="14"/>
+                        <TextBlock Text="{Binding Email}"
+                                   Foreground="LightGray"
+                                   FontSize="14"/>
 
 
                     </StackPanel>
 
                     <StackPanel Grid.Column="1" Orientation="Horizontal">
-                            <Button Content="&#xE9B9;" 
-        FontFamily="Segoe MDL2 Assets"
-        Command="{Binding DataContext.GoToCustomerDetailsViewCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-        CommandParameter="{Binding}" />
+                            <Button Content="&#xE712;" 
+                                    FontFamily="Segoe MDL2 Assets"
+                                    Command="{Binding DataContext.GoToCustomerDetailsViewCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                    CommandParameter="{Binding}" 
+                                    Height="50"
+                                    Width="50"
+                                    Background="CornflowerBlue"/>
                             
                         </StackPanel>
 
