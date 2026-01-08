@@ -44,8 +44,11 @@ namespace CManager.Presentation.GuiApp.ViewModels
         [RelayCommand]
         private void GoToCustomerDetailsView(Customer customer)
         {
+            var customerDetailsViewModel = _serviceProvider.GetRequiredService<CustomerDetailsViewModel>();
+            customerDetailsViewModel.SelectedCustomer = customer;
+
             var mainViewModel = _serviceProvider.GetRequiredService<MainViewModel>();
-            mainViewModel.CurrentViewModel = _serviceProvider.GetRequiredService<CustomerDetailsViewModel>();
+            mainViewModel.CurrentViewModel = customerDetailsViewModel;
             
         }
 

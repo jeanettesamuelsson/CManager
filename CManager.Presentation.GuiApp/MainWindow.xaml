@@ -9,32 +9,39 @@
         d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Background="LightGray"
+        Background="Transparent"
+        WindowStyle="None" 
         
-        Title="CManager" Height="450" Width="300">
+        Title="CManager" Height="650" Width="400">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="80"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        
-        <ContentControl Grid.Row="1" Content="{Binding CurrentViewModel}">
-            <ContentControl.Resources>
-                <DataTemplate DataType="{x:Type viewmodels:HomeViewModel}">
-                    <views:HomeView/>
-                </DataTemplate>
-                <DataTemplate DataType="{x:Type viewmodels:CustomerAddViewModel}">
-                    <views:CustomerAddView/>
-                </DataTemplate>
-                <DataTemplate DataType="{x:Type viewmodels:CustomerListViewModel}">
-                    <views:CustomerListView/>
-                </DataTemplate>
-                <DataTemplate DataType="{x:Type viewmodels:CustomerDetailsViewModel}">
-                    <views:CustomerDetailsView/>
-                </DataTemplate>
-            </ContentControl.Resources>
-        </ContentControl>
+    <Border Background="#202021" CornerRadius="20" >
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-    </Grid>
+            <Grid x:Name="TopBar" Background="Transparent" Grid.Row="0" MouseDown="TopBar_MouseDown">
+                <Button Style="{StaticResource ExitBtn}" Click="ExitButton_Click"/>
+            </Grid>
+
+            <ContentControl Grid.Row="1" Content="{Binding CurrentViewModel}">
+                <ContentControl.Resources>
+                    <DataTemplate DataType="{x:Type viewmodels:HomeViewModel}">
+                        <views:HomeView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewmodels:CustomerAddViewModel}">
+                        <views:CustomerAddView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewmodels:CustomerListViewModel}">
+                        <views:CustomerListView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewmodels:CustomerDetailsViewModel}">
+                        <views:CustomerDetailsView/>
+                    </DataTemplate>
+                </ContentControl.Resources>
+            </ContentControl>
+
+        </Grid>
+    </Border>
 </Window>

@@ -1,13 +1,23 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
+﻿using CManager.Business.Interfaces;
+using CManager.Domain.Models;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 
 namespace CManager.Presentation.GuiApp.ViewModels
 {
-    public class CustomerDetailsViewModel : ObservableObject
+    public partial class CustomerDetailsViewModel : ObservableObject
     {
-        // Add properties and logic as needed
+        [ObservableProperty]
+
+        private Customer? _selectedCustomer;
+
+        public CustomerDetailsViewModel()
+        {
+
+        }
+
     }
 
-    
 }
+
+    

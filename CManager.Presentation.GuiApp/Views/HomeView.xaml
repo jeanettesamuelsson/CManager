@@ -8,22 +8,34 @@
              d:DataContext="{d:DesignInstance Type=viewmodels:HomeViewModel}"
              
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="400">
-    <Grid>
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-        <Image Source="/Resources/Gemini_Generated_Logo.png" Width="200" Margin="10"/>
-
-       
-            <Button Content="Show Customers" 
-        Command="{Binding DataContext.NavigateToCustomerListCommand, RelativeSource={RelativeSource AncestorType=Window}}"
-        Height="50" Width="150" Margin="10"/>
-
-            
-            <Button Content="Add Customer" 
-        Command="{Binding DataContext.NavigateToCustomerAddCommand, RelativeSource={RelativeSource AncestorType=Window}}"
-        Height="50" Width="150" Margin="10"/>
+             d:DesignHeight="650" d:DesignWidth="400">
+    <Border CornerRadius="0 0 25 25">
+        <Grid>
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Image Source="/Resources/Gemini_Generated_Logo.png" Width="300" Margin="10"/>
 
 
-       </StackPanel>
-   </Grid>
+                <Button Content="VIEW CUSTOMERS" 
+                        Background="CornflowerBlue" 
+                        Foreground="Black"
+                        FontWeight="Bold"
+                        Command="{Binding DataContext.NavigateToCustomerListCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                        Height="50" Width="150" Margin="20"
+                        BorderBrush="AliceBlue"
+                        BorderThickness="2"
+                        />
+
+                <Button Content="ADD CUSTOMER" 
+                        Background="CornflowerBlue" 
+                        Foreground="Black"
+                        FontWeight="Bold"
+                        BorderBrush="AliceBlue"
+                        BorderThickness="2"
+                        Command="{Binding DataContext.NavigateToCustomerAddCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                        Height="50" Width="150" Margin="20"/>
+
+
+            </StackPanel>
+        </Grid>
+    </Border>
 </UserControl>

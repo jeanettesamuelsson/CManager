@@ -8,7 +8,7 @@
              d:DataContext="{d:DesignInstance Type=viewmodels:CustomerListViewModel}"
              
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="300">
+             d:DesignHeight="650" d:DesignWidth="400">
     
     
     <Grid Margin="15">
@@ -29,7 +29,11 @@
 
     </Grid>
 
-    <ListView Grid.Row="1" ItemsSource="{Binding Customers}" Margin="0 20 0 0" HorizontalContentAlignment="Stretch">
+    <ListView Grid.Row="1" 
+              ItemsSource="{Binding Customers}" 
+              Margin="0 20 0 0" 
+              HorizontalContentAlignment="Stretch"
+              Background="Transparent">
         <ListView.ItemTemplate>
             <DataTemplate DataType="models:Customer">
                 <Grid>
@@ -41,7 +45,7 @@
 
 
                     <StackPanel Grid.Column="0">
-                        <TextBlock Text="{Binding Name}"/>
+                        <TextBlock Text="{Binding FirstName}"/>
                         <TextBlock Text="{Binding LastName}"/>
                         <TextBlock Text="{Binding Email}"/>
 
@@ -49,9 +53,12 @@
                     </StackPanel>
 
                     <StackPanel Grid.Column="1" Orientation="Horizontal">
-                            <Button Command ="{Binding GoToCustomerDetailsViewCommand}" Content="&#xE710;" FontFamily="Segoe MDL2 Assets"/>
-
-                    </StackPanel>
+                            <Button Content="&#xE9B9;" 
+        FontFamily="Segoe MDL2 Assets"
+        Command="{Binding DataContext.GoToCustomerDetailsViewCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+        CommandParameter="{Binding}" />
+                            
+                        </StackPanel>
 
                 </Grid>
 

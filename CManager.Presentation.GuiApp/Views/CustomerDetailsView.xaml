@@ -4,9 +4,52 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CManager.Presentation.GuiApp.Views"
+             xmlns:viewmodels="clr-namespace:CManager.Presentation.GuiApp.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+             d:DataContext="{d:DesignInstance Type=viewmodels:CustomerDetailsViewModel}"
+             d:DesignHeight="650" d:DesignWidth="400">
+    
+    
+    <Grid Margin="15">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Details" FontSize="25" Foreground="LightGray"/>
+
+            <StackPanel Grid.Row="1" Margin="0 20 0 0">
+                <TextBlock Text="Name" FontSize="16" FontWeight="Bold" Foreground="Gray" Margin="0,15,0,10"/>
+                <TextBlock Text="{Binding SelectedCustomer.FirstName}" FontSize="16" Margin="0,0,0,2"/>
+                <TextBlock Text="{Binding SelectedCustomer.LastName}" FontSize="16"/>
+
+                <TextBlock Text="E-mail" FontSize="16" FontWeight="Bold" Foreground="Gray" Margin="0,15,0,10"/>
+                <TextBlock Text="{Binding SelectedCustomer.Email}" Margin="0 0 0 10" Padding="5"/>
+
+                <TextBlock Text="Telephone Number" FontSize="16" FontWeight="Bold" Foreground="Gray" Margin="0,15,0,10"/>
+                <TextBlock Text="{Binding SelectedCustomer.Telephone}" Margin="0 0 0 10" Padding="5"/>
+
+                <TextBlock Text="Street Address" FontSize="16" FontWeight="Bold" Foreground="Gray" Margin="0,15,0,10"/>
+                <TextBlock Text="{Binding SelectedCustomer.Addres.StreetAddres}" Margin="0 0 0 10" Padding="5"/>
+
+                <TextBlock Text="Postal Code" FontSize="16" FontWeight="Bold" Foreground="Gray" Margin="0,15,0,10"/>
+                <TextBlock Text="{Binding SelectedCustomer.Addres.PostalCode}" Margin="0 0 0 10" Padding="5"/>
+
+                <TextBlock Text="City" FontSize="16" FontWeight="Bold" Foreground="Gray" Margin="0,15,0,10"/>
+                <TextBlock Text="{Binding SelectedCustomer.Addres.City}" Margin="0 0 0 10" Padding="5"/>
+
+
+            </StackPanel>
+      
+        <Button Grid.Row="2" 
+                Content="&#xE830;" 
+                FontFamily="Segoe MDL2 Assets" 
+                HorizontalAlignment="Left"
+                Style="{StaticResource IconBtn}"
+                Padding="15,10"
+                Command="{Binding DataContext.NavigateToCustomerListCommand, RelativeSource={RelativeSource AncestorType=Window}}"/>
     </Grid>
 </UserControl>
