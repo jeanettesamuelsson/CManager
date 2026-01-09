@@ -51,7 +51,7 @@ namespace CManager.Presentation.GuiApp.ViewModels
 
             if (result)
             {
-                // Navigate back to CustomerListViewModel
+                // navigate back to CustomerListView
                 var mainViewModel = _serviceProvider.GetRequiredService<MainViewModel>();
                 mainViewModel.CurrentViewModel = _serviceProvider.GetRequiredService<CustomerListViewModel>();
             }
@@ -59,7 +59,7 @@ namespace CManager.Presentation.GuiApp.ViewModels
 
         }
 
-        //method to cancel adding a new customer and go back to customer list view
+        //method to cancel adding a new customer and go back to customerlistview
         [RelayCommand]
 
         private void Cancel()

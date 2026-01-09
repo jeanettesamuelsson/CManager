@@ -25,34 +25,74 @@
                    HorizontalAlignment="Center"/>
 
             <StackPanel Grid.Row="1" Margin="0 20 0 0">
-                <TextBlock Text="Name" FontSize="14" FontWeight="Bold" Foreground="Gray" Margin="0,15,0,10"/>
+                <TextBlock Text="Name"
+                           FontSize="14"
+                           Foreground="LightGray"
+                           Margin="10,15,0,10"/>
+                
                 <TextBlock Text="{Binding SelectedCustomer.FirstName}" 
-                           Foreground="LightGray" FontSize="14" Margin="0,0,0,2"/>
-            <TextBlock Text="{Binding SelectedCustomer.LastName}" 
-                           Foreground="LightGray" FontSize="14" Margin="0,0,0,10"/>
+                           Foreground="LightGray" 
+                           FontSize="14" 
+                           Margin="10,0,0,10"/>
+                
+                <TextBlock Text="{Binding SelectedCustomer.LastName}" 
+                           Foreground="LightGray" 
+                           FontSize="14" 
+                           Margin="10,0,0,10"/>
 
-            <TextBlock Text="E-mail" FontSize="14" FontWeight="Bold" Foreground="Gray" Margin="0,15,0,10"/>
+                <TextBlock Text="E-mail" 
+                           FontSize="14"   
+                           Foreground="LightGray"
+                           Margin="10,15,0,10"/>
+                
                 <TextBlock Text="{Binding SelectedCustomer.Email}" 
                            Foreground="LightGray"
-                           Margin="0 0 0 10" Padding="5"/>
+                           FontSize="14" 
+                           Margin="10 0 0 10" Padding="5"/>
 
-                <TextBlock Text="Telephone Number" FontSize="14" FontWeight="Bold" Foreground="Gray" Margin="0,15,0,10"/>
+                <TextBlock Text="Telephone Number" 
+                           FontSize="14" 
+                           Foreground="LightGray"
+                           Margin="10,15,0,10"/>
+                
                 <TextBlock Text="{Binding SelectedCustomer.Telephone}" 
                            Foreground="LightGray"
-                           Margin="0 0 0 10" Padding="5"/>
+                           FontSize="14" 
+                           Margin="10 0 0 10" 
+                           Padding="5"/>
 
-                <TextBlock Text="Street Address" FontSize="14" FontWeight="Bold" Foreground="Gray" Margin="0,15,0,10"/>
-                <TextBlock Text="{Binding SelectedCustomer.Addres.StreetAddres}" Margin="0 0 0 10" Padding="5"
+                <TextBlock Text="Street Address" 
+                           FontSize="14" 
+                           Foreground="LightGray" 
+                           Margin="10,15,0,10"/>
+                
+                <TextBlock Text="{Binding SelectedCustomer.Addres.StreetAddres}"
+                           Margin="10 0 0 10" 
+                           FontSize="14" 
+                           Padding="5"
                            Foreground="LightGray"/>
 
-                <TextBlock Text="Postal Code" FontSize="14" FontWeight="Bold" Foreground="Gray" Margin="0,15,0,10"/>
+                <TextBlock Text="Postal Code"
+                           FontSize="14" 
+                           Foreground="LightGray"
+                           Margin="10,15,0,10"/>
+                
                 <TextBlock Text="{Binding SelectedCustomer.Addres.PostalCode}" 
-                           Foreground="LightGray" Margin="0 0 0 10" Padding="5"/>
+                           Foreground="LightGray" 
+                           FontSize="14" 
+                           Margin="10 0 0 10" 
+                           Padding="5"/>
 
-                <TextBlock Text="City" FontSize="14" FontWeight="Bold" Foreground="Gray" Margin="0,15,0,10"/>
+                <TextBlock Text="City" 
+                           FontSize="14" 
+                           Foreground="LightGray"
+                           Margin="10,15,0,10"/>
+                
                 <TextBlock Text="{Binding SelectedCustomer.Addres.City}" 
                            Foreground="LightGray"
-                           Margin="0 0 0 10" Padding="5"/>
+                           FontSize="14" 
+                           Margin="10 0 0 10" 
+                           Padding="5"/>
 
 
             </StackPanel>

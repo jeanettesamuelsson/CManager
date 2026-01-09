@@ -77,10 +77,29 @@ namespace CManager.Infrastructure.Repositories
 
             }
 
+        }
 
+        //method to delete customer by email
+        public bool DeleteCustomer(string email)
+        {
+            try
+            {   //get customers from file
+                var customers = GetAllCustomers();
+                var customerToRemove = customers.FirstOrDefault(c => c.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
 
-
-
+                //if customer found, remove and save updated list
+                if (customerToRemove != null)
+                {
+                    customers.Remove(customerToRemove);
+                    return SaveCustomers(customers);
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error deleting customer: {ex.Message}");
+                return false;
+            }
         }
 
     }

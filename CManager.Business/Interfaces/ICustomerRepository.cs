@@ -7,11 +7,13 @@ namespace CManager.Business.Interfaces
 
 
     {
-        //method to get all customers
+        //method to get all customers 
         List<Customer> GetAllCustomers();
 
-        //method to save customer to file
+        //method to save customer to file 
         bool SaveCustomers(List<Customer> customers);
 
+        //method to delete customer
+        bool DeleteCustomer(string email);
     }
 }

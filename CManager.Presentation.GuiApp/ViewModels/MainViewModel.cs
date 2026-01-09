@@ -13,7 +13,7 @@ namespace CManager.Presentation.GuiApp.ViewModels
         private ObservableObject _currentViewModel = null!;
 
 
-        // Konstruktorn
+        // constructor
         public MainViewModel(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;

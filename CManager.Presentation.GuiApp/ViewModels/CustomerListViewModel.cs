@@ -1,7 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.Extensions.DependencyInjection;
 using CManager.Business.Interfaces;
-using CManager.Business.Services;
 using System.Collections.ObjectModel;
 using CManager.Domain.Models;
 using CommunityToolkit.Mvvm.Input;
@@ -23,6 +22,8 @@ namespace CManager.Presentation.GuiApp.ViewModels
         {
             _customerService = customerService;
             _serviceProvider = serviceProvider;
+
+            //get customers , create new method async?
 
             bool hasError;
             var customers = _customerService.GetAllCustomers(out hasError);

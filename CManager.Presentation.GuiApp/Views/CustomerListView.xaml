@@ -25,11 +25,11 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Grid.Column="0" 
-                   Text="Customers"
+                   Text="All Customers"
                    HorizontalAlignment="Center"
                    FontSize="20" 
-                   FontWeight="Bold"
                    Foreground="LightGray"/>
+            
         <Button Grid.Column="1" Command="{Binding GoToAddCustomerViewCommand}" 
                 Content="&#xE710;" 
                 FontFamily="Segoe MDL2 Assets" 
@@ -71,7 +71,7 @@
                             <Button Content="&#xE712;" 
                                     FontFamily="Segoe MDL2 Assets"
                                     Command="{Binding DataContext.GoToCustomerDetailsViewCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                    CommandParameter="{Binding}" 
+                                    CommandParameter="{Binding .}" 
                                     Height="50"
                                     Width="50"
                                     Background="CornflowerBlue"/>
