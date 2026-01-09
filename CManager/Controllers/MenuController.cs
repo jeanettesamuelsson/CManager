@@ -6,7 +6,6 @@ namespace CManager.Presentation.ConsoleApp.Controllers
 {
     public class MenuController
     {
-        //Private fields. Implement Dependency Injection here!<---------------
         private readonly ICustomerService _customerService;
         private readonly IUserInputValidator _userInputValidator;
 
@@ -199,6 +198,7 @@ namespace CManager.Presentation.ConsoleApp.Controllers
             if (confirmation == "y")
             {
                 //get bool value from RemoveCustomerByEmail method
+
                 var removed = _customerService.RemoveCustomerByEmail(email);
                 if (removed)
                 {
@@ -226,6 +226,7 @@ namespace CManager.Presentation.ConsoleApp.Controllers
                 userInput = Console.ReadLine()!;
 
                 //send userInput into validation method
+
                 isValid = validationMethod(userInput);
 
                 if (!isValid)           

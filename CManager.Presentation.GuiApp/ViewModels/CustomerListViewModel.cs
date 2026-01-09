@@ -34,7 +34,6 @@ namespace CManager.Presentation.GuiApp.ViewModels
             }
         }
 
-        
         [RelayCommand]
         private void GoToAddCustomerView()
         {
@@ -67,9 +66,6 @@ namespace CManager.Presentation.GuiApp.ViewModels
                     Customers.Remove(customer);
                 }
             }
-
-
         }
-
     }
 }

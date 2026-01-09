@@ -12,6 +12,8 @@ namespace CManager.Presentation.GuiApp.ViewModels
         private readonly IServiceProvider _serviceProvider = serviceProvider;
         private readonly ICustomerService _customerService = customerService;
 
+        //bind input fields to properties
+
         [ObservableProperty]
         private string _firstName = string.Empty;
 

@@ -12,8 +12,6 @@ namespace CManager.Presentation.GuiApp.ViewModels
         [ObservableProperty]
         private ObservableObject _currentViewModel = null!;
 
-
-        // constructor
         public MainViewModel(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
@@ -25,6 +23,7 @@ namespace CManager.Presentation.GuiApp.ViewModels
     
 
         // Commands to navigate between views
+
         [RelayCommand]
         private void NavigateToCustomerList()
         {

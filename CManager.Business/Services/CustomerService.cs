@@ -79,7 +79,6 @@ namespace CManager.Business.Services
             }
         }
 
-
         //Get customer by email
         public Customer GetCustomerByEmail(string email)
         {
@@ -96,8 +95,6 @@ namespace CManager.Business.Services
             }
             else return customer;
         }
-
-
 
         //Remove specific customer from list by email
         public bool RemoveCustomerByEmail(string email)
