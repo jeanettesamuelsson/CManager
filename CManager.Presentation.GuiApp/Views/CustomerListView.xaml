@@ -49,8 +49,9 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
 
-                    </Grid.ColumnDefinitions>
+                        </Grid.ColumnDefinitions>
 
 
                     <StackPanel Grid.Column="0">
@@ -71,14 +72,25 @@
                             <Button Content="&#xE712;" 
                                     FontFamily="Segoe MDL2 Assets"
                                     Command="{Binding DataContext.GoToCustomerDetailsViewCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                    CommandParameter="{Binding .}" 
+                                    CommandParameter="{Binding}" 
                                     Height="50"
                                     Width="50"
                                     Background="CornflowerBlue"/>
                             
                         </StackPanel>
 
-                </Grid>
+                        <StackPanel Grid.Column="2" Orientation="Horizontal">
+                            <Button Content="&#xE74D;" 
+                                    FontFamily="Segoe MDL2 Assets"
+                                    Command="{Binding DataContext.DeleteCustomerCommand, RelativeSource={RelativeSource AncestorType=UserControl}   }"
+                                    CommandParameter="{Binding}" 
+                                    Height="50"
+                                    Width="50"
+                                    Background="CornflowerBlue"/>
+
+                        </StackPanel>
+
+                    </Grid>
 
             </DataTemplate>
         </ListView.ItemTemplate>

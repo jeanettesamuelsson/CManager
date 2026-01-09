@@ -53,5 +53,23 @@ namespace CManager.Presentation.GuiApp.ViewModels
             
         }
 
+        [RelayCommand]
+
+        private void DeleteCustomer(Customer customer)
+        {
+            if (customer!=null)
+            {
+                var result = _customerService.RemoveCustomerByEmail(customer.Email);
+
+                // if RemoveCustomerByEmail method returns true, remove customer 
+                if (result)
+                {
+                    Customers.Remove(customer);
+                }
+            }
+
+
+        }
+
     }
 }
