@@ -102,30 +102,17 @@ namespace CManager.Business.Services
         //Remove specific customer from list by email
         public bool RemoveCustomerByEmail(string email)
         {
-            try
+            // check that email is not null or empty
+
+            if(string.IsNullOrWhiteSpace(email))
             {
-                var customers = _customerRepository.GetAllCustomers();
-
-                //search for specific email and remove that customer
-
-                var customerToRemove = customers.FirstOrDefault(c => c.Email.Equals(email, StringComparison.OrdinalIgnoreCase)
-                );
-
-                if (customerToRemove is null)
-                {
-                    return false;
-                }
-
-                customers.Remove(customerToRemove);
-
-                //save list
-
-                return _customerRepository.SaveCustomers(customers);
+               return false;
             }
-            catch (Exception)
-            {
-                return false;
-            }
+    
+            bool isDeleted = _customerRepository.DeleteCustomer(email);
+
+            return isDeleted;
+
         }
     }
 }
